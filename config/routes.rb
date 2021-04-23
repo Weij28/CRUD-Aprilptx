@@ -9,10 +9,19 @@ Rails.application.routes.draw do
     collection do
       get :sign_in, action: 'new'
       post :sign_in, action: 'create'
+      delete :sign_out, action: 'destroy'
     end
   end
 
-  resources :restaurants
+  resources :restaurants do 
+    resources :comments, shallow: true, 
+                        only: [:create, :comment]
+                        # 或者 except: [:index, :new]
+
+  end
+
+
+
   root "restaurants#index"
 
   # get '/restaurants', to: 'restaurants#index'
