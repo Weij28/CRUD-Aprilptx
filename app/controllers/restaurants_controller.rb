@@ -10,7 +10,8 @@ class RestaurantsController < ApplicationController
   def show
     @restaurant = Restaurant.find(params[:id])
     @comment = @restaurant.comments.new
-    @comments = @restaurant.comments.order(id: :desc)
+    @comments = @restaurant.comments.order(id: :desc)  
+    # 第三行指的是把comment本身的內容依照一個順序把他回傳回來，並把最新內容放在最上面
   end
 
   def new
